@@ -44,9 +44,23 @@ class DLinkedList:
         print(dllist)
         print(f"Number of nodes : {self.count}")
         return self
+    
+    def insert(self, loc, data):
+        if self.head is None:
+            node = Node(data, None, None)
+            self.head = node
+            self.count += 1
+            return self
+        if loc == 0:
+            node = Node(data, self.head, None)
+            self.head.prev = node
+            self.head = node
+            self.count += 1
+            return self
 
 dllist = DLinkedList()
 dllist.append(1)
 dllist.append(2)
 dllist.append(3)
+dllist.insert(0, 0)
 dllist.print
