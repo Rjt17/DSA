@@ -23,7 +23,7 @@ class DLinkedList:
         while itr.next:
             itr = itr.next
         
-        itr.next = node(data, itr, None)
+        itr.next = Node(data, itr, None)
         self.count += 1
         return self
 
@@ -36,4 +36,41 @@ class DLinkedList:
             return self
         
         #if list has nodes
+        itr = self.head
+        dllist = "None <-- "
+        suffix = ' <=> '
+        while itr:
+            if itr.next is None:
+                suffix = ' --> None'
+            dllist += str(itr.data) + suffix
+            itr = itr.next
+        print(dllist)
+        return self
+    
+    #just for debugging
+    @property
+    def print_all(self):
+        itr = self.head
+        while itr:
+            print(str(itr.prev) + ", " + str(itr) + ", " + str(itr.next) + "<=>")
+            itr = itr.next
+    #############################################################################
         
+    def insert(self, loc, data):
+        if loc == self.count:
+            self.append(data)
+            return self
+        if loc == 0:
+            node = Node(data, None, self.head)
+            self.head = node
+            self.head.next.prev = self.head
+            return self
+        
+        
+dll = DLinkedList()
+dll.print
+dll.append(1)
+dll.append(2)
+dll.print
+dll.insert(0, 22)
+dll.print
